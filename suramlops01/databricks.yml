@@ -1,0 +1,37 @@
+# The name of the bundle. run `databricks bundle schema` to see the full bundle settings schema.
+bundle:
+  name: suramlops01
+
+variables:
+  experiment_name:
+    description: Experiment name for the model training.
+    default: /Users/${workspace.current_user.userName}/${bundle.target}-suramlops01-experiment
+  model_name:
+    description: Model name for the model training.
+    default: suramlops01-model
+
+include:
+  # Resources folder contains ML artifact resources for the ML project that defines model and experiment
+  # And workflows resources for the ML project including model training -> validation -> deployment,
+  # feature engineering,  batch inference, quality monitoring, metric refresh, alerts and triggering retraining
+  - ./resources/batch-inference-workflow-resource.yml
+  - ./resources/ml-artifacts-resource.yml
+  - ./resources/model-workflow-resource.yml
+  - ./resources/feature-engineering-workflow-resource.yml
+  # TODO: uncomment once monitoring inference table has been created
+  - ./resources/monitoring-resource.yml
+
+# Deployment Target specific values for workspace
+targets:
+  devsura:
+    default: true
+    workspace:
+      host: https://adb-701332733887587.7.azuredatabricks.net
+
+  stagingsura:
+    workspace:
+      host: https://adb-3859663544038013.13.azuredatabricks.net
+
+  prodsura:
+    workspace:
+      host: https://adb-2900826933759041.1.azuredatabricks.net

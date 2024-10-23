@@ -1,0 +1,12 @@
+{
+  "input_root_dir": "suramlops01",
+  "input_cloud": "azure",
+  "input_cicd_platform": "azure_devops",
+  "input_default_branch": "dev",
+  "input_release_branch": "release",
+  "cloud_specific_node_type_id": "v0.221.0",
+  "input_cli_version": "v0.221.0",
+  "test_catalog_name": "stagingsura",
+  "staging_catalog_name": "stagingsura",
+  "prod_catalog_name": "prodsura"
+}
